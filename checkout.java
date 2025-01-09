@@ -1,72 +1,159 @@
 import java.util.Scanner;
 import java.time.LocalDate;
-
 import java.util.ArrayList;
 
- class product{
-    String name;
-    double price;
-    int quantity;
 
-    public product (String name, double price, int quantity){
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
- } 
-public double calculateTotal(){
-    return price * quantity;
-} 
-}
+
 public class checkout {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-      System.out.println("Welcome to semicolon checkout store ");
-      
-      System.out.println("Enter product name:");
-      String name = input.nextLine();
 
-       System.out.println("Enter product price");
-       double price = input.nextDouble();
+ArrayList<String> name = new ArrayList<>();
+ArrayList<Double> price = new ArrayList<>();
+ArrayList<Integer>  quantity = new ArrayList<>();
+
+      System.out.println("Welcome to semicolon checkout store ");
+      System.out.println("Enter costomer ID: ");
+	String cos = input.nextLine();
+ String name1;
+ double price1;
+ int quantity1;
+ String addi;
+LocalDate currentDate = LocalDate.now();
+
+do{
+      System.out.println("Enter product name:");
+       name1 = input.nextLine();
+      name.add(name1);
+
+       System.out.println("Enter product price: $ ");
+        price1 = input.nextDouble();
+	price.add(price1);
 
        System.out.println("Enter the quantity:");
-       int quantity = input.nextInt();
+       quantity1 = input.nextInt();
+	quantity.add(quantity1);
 
-       product product = new product(name, price, quantity);
+	System.out.println("Add more Item (Yes/No)");
+	addi = input.nextLine();
+	 addi = input.nextLine();
+	
 
-       double total = product.calculateTotal();
-       double vat = total * 0.075;
-       double grandTotal = total + vat;
+	
+}while (addi.equalsIgnoreCase ("Yes"));
+	
 
-       LocalDate currentDate = LocalDate.now();
-       
+	if (addi.equalsIgnoreCase ("No")){
+ System.out.println("Cashier Name: ");
+	String cash = input.nextLine( );
+
+System.out.println("How much discount he/she will get(%): ");
+	double discountrate = input.nextInt();
+
+double subTotal = 0;
 
 
-       //output
-       System.out.println("\n---- Checkout inovie-------");
-       System.out.println("SEMICOLON STORE");
+double billTotal = 0;
+ 
+double total = 0;
+
+
+
+
+
+
+System.out.println("=======================================================");
+System.out.println("SEMICOLON STORE");
        System.out.println("MAIN LAND BRANCH");
        System.out.println("LOCATION: 312, HARBART MACULAY WAY, SABO YABA, LAGOS.");
        System.out.println("Tel: 0329828342");
        System.out.println("Date:  "+ currentDate);
-       System.out.println("Casher Name: Chiman");
-       System.out.println("Input customer name");
-       String cusname = input.nextLine();
-       System.out.println("Customer name:" + cusname);
-       System.out.println("\n=======================================================");
-       System.out.println("\t ITEM        PRICE     TOTAL(NGN)");
-       System.out.println("\t  " + name   +       "\t     "+  price +   "\t" +total );
-       System.out.println("\n-------------------------------------------------------");
-       System.out.println("\n product:" + product.name);
-       System.out.println("\n price:" + product.price);
-       System.out.println("\n uantity:" + product.quantity);
-       System.out.println("\n Total:" + total);
-       System.out.println("\n vat 7.5:" + vat);
-       System.out.println("\n========================================================"); 
-       System.out.println("\n Bill total:" + grandTotal);
-       System.out.println("\n========================================================"); 
-    System.out.println("\n Thank you for shopping @ semicolon Store!");
-    System.out.println("\n-------------------------------------------------------");
-    System.out.println("\n ---------------Season Greetings------------------------");
+       System.out.println("Casher Name: " + cash);
+       System.out.println("Input customer name");          
+ System.out.println("===============================================================================");
+       System.out.println("\t\t" +"ITEM" + "\t" + "\t" + "QTY"  + "\t\t" + "PRICE" + "\t\t"   + " TOTAL(NGN)");
+System.out.println("---------------------------------------------------------------------------------");
+  
+for(int items = 0; items < name.size(); items++ ){
+total = quantity.get(items) * price.get(items);
+subTotal +=quantity.get(items) * price.get(items);
+System.out.println("\t\t"+name.get(items)+ "\t\t"+ (quantity.get(items))+"\t\t" + (price.get(items)) + "\t\t\t"+ total);
 
+}
+System.out.println("---------------------------------------------------------------------------------");
+double discount = discountrate / 100 * subTotal;
+
+
+double vat = 17.50/100 * subTotal;
+
+double realTotal = vat + subTotal - discount;
+
+        
+System.out.println("\t\t\t"+"Sub Total" + "\t\t"+subTotal);			 
+System.out.println("\t\t\t"+ "Discount:" + "\t\t"+discount );
+System.out.println("\t\t\t"+ "VAT @ 17.50%:" + "\t\t"+ vat );	
+
+System.out.println("===============================================================================");
+System.out.println("\t\t\t"+ "Bill Total: " + "\t\t\t" + realTotal );	
+
+System.out.println("===============================================================================");
+System.out.println("THIS IS NOT A RECEPIT KINDLY PAY:" + "\t\t\t" +realTotal);
+System.out.println("===============================================================================");
+
+System.out.println("How much did customer give to you?");
+double amountGiven = input.nextInt();
+if( amountGiven < realTotal ){
+System.out.println("Invaild Input");
+}else
+
+
+
+
+System.out.println("=======================================================");
+System.out.println("SEMICOLON STORE");
+       System.out.println("MAIN LAND BRANCH");
+       System.out.println("LOCATION: 312, HARBART MACULAY WAY, SABO YABA, LAGOS.");
+       System.out.println("Tel: 0329828342");
+       System.out.println("Date:  "+ currentDate);
+       System.out.println("Casher Name: " + cash);
+       System.out.println("Input customer name");          
+ System.out.println("===============================================================================");
+       System.out.println("\t\t" +"ITEM" + "\t" + "\t" + "QTY"  + "\t\t" + "PRICE" + "\t\t"   + " TOTAL(NGN)");
+System.out.println("---------------------------------------------------------------------------------");
+  
+for(int items = 0; items < name.size(); items++ ){
+total = quantity.get(items) * price.get(items);
+subTotal +=quantity.get(items) * price.get(items);
+System.out.println("\t\t"+name.get(items)+ "\t\t"+ (quantity.get(items))+"\t\t" + (price.get(items)) + "\t\t\t"+ total);
+	
+
+}
+System.out.println("=================================================================================");
+System.out.println("\t\t\t"+"Sub Total" + "\t\t"+subTotal);			 
+System.out.println("\t\t\t"+ "Discount:" + "\t\t"+discount );
+System.out.println("\t\t\t"+ "VAT @ 17.50%:" + "\t\t"+ vat );
+
+System.out.println("=================================================================================");
+double balance = amountGiven - realTotal;
+
+ System.out.println("Bill Total:" + "\t\t\t" + realTotal);
+ System.out.println("Amount paid:" + "\t\t\t" + amountGiven);
+System.out.println("Balance" + "\t\t\t" + balance );
+
+System.out.println("=================================================================================");
+System.out.println("THANK YOU FOR YOUR PATRONAGE");
+System.out.println("=================================================================================");
+ 
+
+
+
+
+    
+      	
+
+}
+
+ 
+    
     }
 }
