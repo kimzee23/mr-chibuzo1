@@ -6,7 +6,7 @@ public class pizza {
         Scanner input = new Scanner(System.in);
 
         // the  Pizza details
-        String[] pizzaTypes = {"Sapa size", "Small Money", "Big boys", "Odogwu", "kings size"};
+        String[] pizzaTypes = {"Sapa size is 4 slices = 2500", "Small Money is 8 slices = 2900", "Big boys is 8 slices = 4000", "Odogwu is 12 slices = 5200", "kings size is 16 silces = 8200"};
         int[] slicesPerBox = {4, 6, 8, 12,16};
         int[] pricesPerBox = {2500, 2900, 4000, 5200,8200};
 
@@ -27,9 +27,10 @@ public class pizza {
         System.out.print("Enter the number  to the pizza type: ");
         int pizzaChoice = input.nextInt() - 1;
 
-        if (pizzaChoice < 0 || pizzaChoice >= pizzaTypes.length) {
-            System.out.println("Invalid pizza choice. Please restart the program.");
-            return;
+        while (pizzaChoice < 0 || pizzaChoice >= pizzaTypes.length) {
+        System.out.println("Invalid pizza choice. Please Re-enter right number of pizza");
+	pizzaChoice = input.nextInt() - 1;
+            
         }
 
         // Calculations
@@ -53,5 +54,17 @@ public class pizza {
     }
 }
 
-    
+/*1.Prompt the user to enter the number of people that want to get pizza
+2.Collect the number of the people 
+3.store the number  as guests 
+4.list the number of pizza available 
+5.Let the guest the user choose one
+6.collect the type of pizza the user choose 
+7.store the pizza that was choose my the user
+8.Calculate the number of boxes required
+9.collect and store
+10.Calculate the number of leftover  slices.
+11.Calculate total price in Naira.*/
 
+
+    
